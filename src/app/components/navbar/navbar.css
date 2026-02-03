@@ -139,3 +139,10 @@
     display: flex;
   }
 }
+
+/* Ensure menu is always hidden on desktop */
+@media (min-width: 769px) {
+  .navbar__menu {
+    display: none !important;
+  }
+}
