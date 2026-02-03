@@ -48,6 +48,7 @@
 
 .navbar__right {
   display: flex;
+  gap: 2rem;
   justify-content: flex-end;
 }
 
@@ -124,6 +125,10 @@
 
   .navbar__link {
     font-size: 0.65rem;
+  }
+
+  .navbar__link--desktop-only {
+    display: none;
   }
 
   .navbar__menu {

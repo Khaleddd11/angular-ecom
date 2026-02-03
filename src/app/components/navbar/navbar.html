@@ -11,6 +11,8 @@
   </button>
   <a routerLink="/products" class="navbar__brand">ECOM</a>
   <div class="navbar__right">
+    <a routerLink="/login" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link navbar__link--desktop-only">LOGIN</a>
+    <a routerLink="/register" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link navbar__link--desktop-only">REGISTER</a>
     <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CART ({{ cartService.count() }})</a>
   </div>
   <div class="navbar__menu" [class.navbar__menu--open]="menuOpen()">
