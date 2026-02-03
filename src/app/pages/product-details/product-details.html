@@ -29,7 +29,7 @@
           </button>
         }
       </div>
-      <button type="button" class="product-details__add" [disabled]="p.stock === 0" (click)="$event.stopPropagation()">
+      <button type="button" class="product-details__add" [disabled]="p.stock === 0" (click)="addToCart()">
         ADD TO CART — {{ p.price }} EGP
       </button>
     </div>

@@ -3,6 +3,7 @@ import { UpperCasePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
 import { products } from '../../data/products.data';
+import { CartService } from '../../services/cart.service';
 
 const SIZES = [
   { id: 's', label: 'S', available: true },
@@ -22,7 +23,10 @@ export class ProductDetails implements OnInit {
   selectedSize = signal<string>('s');
   protected readonly sizes = SIZES;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -35,6 +39,13 @@ export class ProductDetails implements OnInit {
     const size = this.sizes.find((s) => s.id === sizeId);
     if (size?.available) {
       this.selectedSize.set(sizeId);
+    }
+  }
+
+  addToCart(): void {
+    const p = this.product();
+    if (p && p.stock > 0) {
+      this.cartService.addToCart();
     }
   }
 }

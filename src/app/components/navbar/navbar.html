@@ -2,7 +2,7 @@
   <div class="navbar__left">
     <a routerLink="/products" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">HOME</a>
     <a routerLink="/products" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">SHOP ALL</a>
-    <a routerLink="/login" class="navbar__link">CONTACT</a>
+    <a routerLink="/contact" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CONTACT</a>
   </div>
   <button type="button" class="navbar__hamburger" aria-label="Toggle menu" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()">
     <span class="navbar__hamburger-line"></span>
@@ -11,12 +11,14 @@
   </button>
   <a routerLink="/products" class="navbar__brand">ECOM</a>
   <div class="navbar__right">
-    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CART (0)</a>
+    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CART ({{ cartService.count() }})</a>
   </div>
   <div class="navbar__menu" [class.navbar__menu--open]="menuOpen()">
     <a routerLink="/products" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">HOME</a>
     <a routerLink="/products" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">SHOP ALL</a>
-    <a routerLink="/login" class="navbar__menu-link" (click)="closeMenu()">CONTACT</a>
-    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CART (0)</a>
+    <a routerLink="/contact" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CONTACT</a>
+    <a routerLink="/login" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">LOGIN</a>
+    <a routerLink="/register" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">REGISTER</a>
+    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CART ({{ cartService.count() }})</a>
   </div>
 </nav>

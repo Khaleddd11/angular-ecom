@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Navbar {
   menuOpen = signal(false);
+
+  constructor(protected cartService: CartService) {}
 
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
