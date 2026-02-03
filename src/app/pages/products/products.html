@@ -1,0 +1,14 @@
+<div class="products-page">
+  @if (products.length) {
+    <div class="products-hero">
+      <a [routerLink]="['/product', products[0].id]" class="products-hero__link">
+        <img [src]="products[0].images[0]" [alt]="products[0].title" class="products-hero__image" />
+      </a>
+    </div>
+  }
+  <div class="products-grid">
+    @for (product of products; track product.id) {
+      <app-product-card [product]="product" />
+    }
+  </div>
+</div>

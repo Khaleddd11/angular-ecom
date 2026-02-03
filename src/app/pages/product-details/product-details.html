@@ -1,0 +1,39 @@
+@if (product(); as p) {
+  <div class="product-details">
+    <div class="product-details__left">
+      <div class="product-details__info">
+        <h1 class="product-details__title">{{ p.title | uppercase }}</h1>
+      </div>
+      <div class="product-details__description-block">
+        <p class="product-details__description">{{ p.description | uppercase }}</p>
+        <p class="product-details__origin">MADE IN USA</p>
+      </div>
+    </div>
+    <div class="product-details__image-wrap">
+      @if (p.images.length) {
+        <img [src]="p.images[0]" [alt]="p.title" class="product-details__image" />
+      }
+    </div>
+    <div class="product-details__purchase">
+      <div class="product-details__sizes">
+        @for (size of sizes; track size.id) {
+          <button
+            type="button"
+            class="product-details__size"
+            [class.product-details__size--selected]="selectedSize() === size.id"
+            [class.product-details__size--unavailable]="!size.available"
+            [disabled]="!size.available"
+            (click)="selectSize(size.id)"
+          >
+            {{ size.label }}
+          </button>
+        }
+      </div>
+      <button type="button" class="product-details__add" [disabled]="p.stock === 0" (click)="$event.stopPropagation()">
+        ADD TO CART — {{ p.price }} EGP
+      </button>
+    </div>
+  </div>
+} @else {
+  <p class="product-details__not-found">Product not found.</p>
+}
