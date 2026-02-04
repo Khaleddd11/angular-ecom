@@ -4,16 +4,52 @@
   <div class="auth-page__content">
     <div class="auth-page__form-wrapper">
       <h2 class="auth-page__subtitle">SIGN IN</h2>
-      <form class="auth-form">
+      <form class="auth-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <div class="auth-form__field">
           <label for="login-email" class="auth-form__label">Email</label>
-          <input type="email" id="login-email" name="email" class="auth-form__input" placeholder="your.email@example.com" />
+          <input
+            type="email"
+            id="login-email"
+            name="email"
+            class="auth-form__input"
+            placeholder="your.email@example.com"
+            required
+            [pattern]="emailPattern"
+            [(ngModel)]="model.email"
+            #email="ngModel"
+          />
+          @if (submitted && email.invalid) {
+            <p class="auth-form__error">
+              @if (email.hasError('required')) {
+                Email is required.
+              } @else if (email.hasError('pattern')) {
+                Please enter a valid email.
+              }
+            </p>
+          }
         </div>
         <div class="auth-form__field">
           <label for="login-password" class="auth-form__label">Password</label>
-          <input type="password" id="login-password" name="password" class="auth-form__input" placeholder="Your password" />
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            class="auth-form__input"
+            placeholder="Your password"
+            required
+            [(ngModel)]="model.password"
+            #password="ngModel"
+          />
+          @if (submitted && password.invalid) {
+            <p class="auth-form__error">
+              Password is required.
+            </p>
+          }
         </div>
         <button type="submit" class="auth-form__submit">SIGN IN</button>
+        <p class="auth-form__hint">
+          Don’t have account ? <a routerLink="/register">Register</a>
+        </p>
       </form>
     </div>
   </div>

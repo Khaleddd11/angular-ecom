@@ -54,7 +54,6 @@
 .auth-form__input {
   padding: 0.75rem;
   font-size: 0.875rem;
-  font-family: inherit;
   border: 1px solid #000;
   background: #fff;
   color: #000;
@@ -81,6 +80,23 @@
 
 .auth-form__submit:hover {
   opacity: 0.85;
+}
+
+.auth-form__error {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #c00;
+}
+
+.auth-form__hint {
+  margin: 0;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.auth-form__hint a {
+  color: #000;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
