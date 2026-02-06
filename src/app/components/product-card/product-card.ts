@@ -18,7 +18,7 @@ export class ProductCard {
   addToCart(): void {
     const p = this.product();
     if (p && p.stock > 0) {
-      this.cartService.addToCart();
+      this.cartService.addToCart(p);
     }
   }
 }

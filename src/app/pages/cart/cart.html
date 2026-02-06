@@ -1,1 +1,44 @@
-<p>Cart page</p>
+<div class="cart-page">
+  @if (cartCount === 0) {
+    <div class="cart-empty">
+      <h2 class="cart-empty__title">EMPTY CART</h2>
+      <p class="cart-empty__message">Your shopping cart is empty.</p>
+      <a routerLink="/products" class="cart-empty__link">Continue Shopping</a>
+    </div>
+  } @else {
+    <div class="cart-content">
+      <h1 class="cart-content__title">SHOPPING CART</h1>
+      <div class="cart-items">
+        @for (item of cartItems; track item.product.id) {
+          <div class="cart-item">
+            <div class="cart-item__image-wrap">
+              @if (item.product.images.length) {
+                <img [src]="item.product.images[0]" [alt]="item.product.title" class="cart-item__image" />
+              }
+            </div>
+            <div class="cart-item__info">
+              <h3 class="cart-item__title">{{ item.product.title | uppercase }}</h3>
+              <p class="cart-item__price">{{ item.product.price }} EGP</p>
+            </div>
+            <div class="cart-item__quantity">
+              <button type="button" class="cart-item__quantity-btn" (click)="decreaseQuantity(item.product.id)">-</button>
+              <span class="cart-item__quantity-value">{{ item.quantity }}</span>
+              <button type="button" class="cart-item__quantity-btn" (click)="increaseQuantity(item.product.id)" [disabled]="item.quantity >= item.product.stock">+</button>
+            </div>
+            <div class="cart-item__total">
+              <p class="cart-item__total-price">{{ item.product.price * item.quantity }} EGP</p>
+            </div>
+            <button type="button" class="cart-item__remove" (click)="removeItem(item.product.id)">Remove</button>
+          </div>
+        }
+      </div>
+      <div class="cart-summary">
+        <div class="cart-summary__total">
+          <span class="cart-summary__total-label">TOTAL:</span>
+          <span class="cart-summary__total-value">{{ getTotalPrice() }} EGP</span>
+        </div>
+        <p class="cart-summary__count">Items: {{ cartCount }}</p>
+      </div>
+    </div>
+  }
+</div>

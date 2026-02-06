@@ -2,8 +2,8 @@ import { Component, OnInit, signal } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
-import { products } from '../../data/products.data';
 import { CartService } from '../../services/cart.service';
+import { ProductsService } from '../../services/products.service';
 
 const SIZES = [
   { id: 's', label: 'S', available: true },
@@ -25,14 +25,25 @@ export class ProductDetails implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private productsService: ProductsService
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     const idNum = Number(id);
-    const found = products.find((p) => p.id === idNum);
-    this.product.set(found ?? null);
+    this.productsService.getProductById(idNum).subscribe(
+      (data) => {
+        this.product.set(data);
+      },
+      (error) => {
+        console.log('error: ', error);
+        this.product.set(null);
+      },
+      () => {
+        console.log('complete');
+      }
+    );
   }
 
   selectSize(sizeId: string): void {
@@ -45,7 +56,7 @@ export class ProductDetails implements OnInit {
   addToCart(): void {
     const p = this.product();
     if (p && p.stock > 0) {
-      this.cartService.addToCart();
+      this.cartService.addToCart(p);
     }
   }
 }

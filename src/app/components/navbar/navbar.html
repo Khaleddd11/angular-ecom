@@ -13,7 +13,7 @@
   <div class="navbar__right">
     <a routerLink="/login" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link navbar__link--desktop-only">LOGIN</a>
     <a routerLink="/register" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link navbar__link--desktop-only">REGISTER</a>
-    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CART ({{ cartService.count() }})</a>
+    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__link">CART ({{ cartCount() }})</a>
   </div>
   <div class="navbar__menu" [class.navbar__menu--open]="menuOpen()">
     <a routerLink="/products" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">HOME</a>
@@ -21,6 +21,6 @@
     <a routerLink="/contact" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CONTACT</a>
     <a routerLink="/login" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">LOGIN</a>
     <a routerLink="/register" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">REGISTER</a>
-    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CART ({{ cartService.count() }})</a>
+    <a routerLink="/cart" routerLinkActive="navbar__link--active" [routerLinkActiveOptions]="{ exact: true }" class="navbar__menu-link" (click)="closeMenu()">CART ({{ cartCount() }})</a>
   </div>
 </nav>
